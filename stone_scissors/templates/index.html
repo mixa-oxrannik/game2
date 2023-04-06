@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 style="position: absolute; top: 150px; left: 50%; transform: translateX(-50%);">
+        {% if result %}
+        {{ result }}
+        {% endif %}
+    </h1>
+    <div style="position: absolute; top: 250px; left: 800px">
+        <h2> Компьютер: {{ value }} </h2>
+            {% if selected_choice %}
+        <h2> Ты: {{ selected_choice }} </h2>
+            {% endif %}
+    </div>
+{% endblock %}

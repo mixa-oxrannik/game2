@@ -1,0 +1,13 @@
+body {
+  background-color: #FFC0CB;
+  margin: 0;
+}
+.header {
+  background-color: brown;
+  height: 80px; /* задаем высоту элемента */
+}
+
+h1, a {
+  margin: 0;
+  padding: 0;
+}
