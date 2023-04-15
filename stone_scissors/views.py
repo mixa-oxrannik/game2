@@ -4,7 +4,7 @@ from .models import Choice
 from .main import game_progress
 
 
-def first(request):
+def result_game(request):
     a = Choice.objects.all()
     selected_choice = request.GET.get('selected_choice', None)
     result = game_progress(selected_choice)
