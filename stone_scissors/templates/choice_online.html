@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" id="my-content" class="my-content">
+    {% csrf_token %}
+    {% for choice in form %}
+        {{ choice }}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Выбрать</button>
+</form>
+{% endblock %}
