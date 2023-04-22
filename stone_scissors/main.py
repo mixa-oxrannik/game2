@@ -22,6 +22,10 @@ def game_total(choice1, choice2):
     elif (choice1 == list_values[0] and choice2 == list_values[1]) or (
           choice1 == list_values[1] and choice2 == list_values[2]) or (
           choice1 == list_values[2] and choice2 == list_values[0]):
-        return 'Победа'
+        return 'Победил: Игрок1'
+    elif (choice2 == list_values[0] and choice1 == list_values[1]) or (
+            choice2 == list_values[1] and choice1 == list_values[2]) or (
+            choice2 == list_values[2] and choice1 == list_values[0]):
+        return 'Победил: Игрок2'
     else:
-        return 'Проиграл'
+        return 'Ждём действий второго игрока'

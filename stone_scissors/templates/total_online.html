@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-{{ result }}
-Ты{{ selected_choice }}
-Враг{{ enemy_choice }}
+
+    <div id="my-content" class="my-content">
+        <h1 style="position: absolute; top: 230px; left: 50%; transform: translateX(-50%);">
+            {% if result %}
+            {{ result }}
+            {% endif %}
+        </h1>
+    </div>
+    <div style="position: absolute; top: 330px; left: 50%; transform: translateX(-50%);">
+        <h2> Игрок1: {{ selected_choice }} </h2>
+        <h2> Игрок2: {{ enemy_choice }} </h2>
+    </div>
+    <h1 style="position: absolute; top: 630px; left: 50%; transform: translateX(-50%);">
+        <a id="my-link" href="/online">Новая игра</a>
+    </h1>
 
 {% endblock %}

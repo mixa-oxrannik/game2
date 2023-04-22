@@ -24,7 +24,12 @@ def my_choise(request):
 
 def main(request):
     '''Главная страница'''
-    return render(request, 'main.html')
+    chois = Choice.objects.all()
+    if len(chois) < 2:
+        a = 'Eщё выбирает'
+    else:
+        a = chois[1]
+    return render(request, 'main.html', {'selected_choice': chois[0], 'enemy_choice': a})
 
 def choice_online(request):
     '''Выбор варианта в онлайн игре'''
@@ -37,12 +42,13 @@ def choice_online(request):
             selected_choice = form.cleaned_data['choice']
             choice_obj = Choice.objects.create(choice=selected_choice)
             if len(Choice.objects.all()) == 2:
-                enemy_choice = Choice.objects.all()[0]
-                return redirect('/total_online?selected_choice={}&enemy_choice={}'.format(choice_obj.choice, enemy_choice))
-            return redirect('/offline?selected_choice={}'.format(choice_obj.choice))
+                all_choice = Choice.objects.all()
+                return redirect('/total_online?selected_choice={}&enemy_choice={}'.format(all_choice[0], all_choice[1]))
+            enemy_choice = 'Ещё выбирает'
+            return redirect('/total_online?selected_choice={}&enemy_choice={}'.format(choice_obj.choice, enemy_choice))
     else:
         form = ChoiceForm()
-    return render(request, 'choice_online.html', {'form': form})
+    return render(request, 'my_choice.html', {'form': form})
 
 def total_online(request):
     '''Отображение результата для 2-го игрока'''
