@@ -6,13 +6,13 @@ from .main import game_progress, game_total
 
 
 def result_game(request):
-    '''Отображение победителя'''
+    '''Winner display'''
     selected_choice = request.GET.get('selected_choice', None)
     result = game_progress(selected_choice)
     return render(request, 'index.html', {'value': result[0], 'selected_choice': selected_choice, 'result': result[1]})
 
 def my_choise(request):
-    '''Страница выбора варианта для оффлайн игры'''
+    '''Offline option selection page'''
     if request.method == 'POST':
         form = ChoiceForm(request.POST)
         if form.is_valid():
@@ -23,7 +23,7 @@ def my_choise(request):
     return render(request, 'my_choice.html', {'form': form})
 
 def main(request):
-    '''Главная страница'''
+    '''Main page'''
     chois = Choice.objects.all()
     if len(chois) < 2:
         a = 'Eщё выбирает'
@@ -32,7 +32,7 @@ def main(request):
     return render(request, 'main.html', {'selected_choice': chois[0], 'enemy_choice': a})
 
 def choice_online(request):
-    '''Выбор варианта в онлайн игре'''
+    '''Choosing an option in an online game'''
     if request.method == 'POST':
         form = ChoiceForm(request.POST)
         if form.is_valid():
@@ -51,15 +51,12 @@ def choice_online(request):
     return render(request, 'my_choice.html', {'form': form})
 
 def total_online(request):
-    '''Отображение результата для 2-го игрока'''
+    '''Display result for 2nd player'''
     selected_choice = request.GET.get('selected_choice', None)
     enemy_choice = request.GET.get('enemy_choice', None)
     result = game_total(selected_choice, enemy_choice)
     return render(request, 'total_online.html', {'selected_choice': selected_choice, 'enemy_choice': enemy_choice, 'result': result})
 
-def expectation_total_online(request):
-    selected_choice = request.GET.get('selected_choice', None)
-    return render(request, 'expectation_total_online.html', {'selected_choice': selected_choice})
 
 
 

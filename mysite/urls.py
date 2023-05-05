@@ -8,5 +8,5 @@ urlpatterns = [
     path('offline', views.result_game),
     path('choice', views.my_choise),
     path('online', views.choice_online),
-    path('', views.main),
+    path('', views.main, name='main'),
 ]

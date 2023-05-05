@@ -13,8 +13,9 @@
         <h2> Игрок1: {{ selected_choice }} </h2>
         <h2> Игрок2: {{ enemy_choice }} </h2>
     </div>
+    {% if enemy_choice != "Ещё выбирает" %}
     <h1 style="position: absolute; top: 630px; left: 50%; transform: translateX(-50%);">
         <a id="my-link" href="/online">Новая игра</a>
     </h1>
-
+    {% endif %}
 {% endblock %}
