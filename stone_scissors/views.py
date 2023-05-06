@@ -1,8 +1,8 @@
-from .forms import ChoiceForm
 from django.shortcuts import render, redirect
+
 from .models import Choice
 from .main import game_progress, game_total
-
+from .forms import ChoiceForm
 
 
 def result_game(request):
@@ -10,6 +10,7 @@ def result_game(request):
     selected_choice = request.GET.get('selected_choice', None)
     result = game_progress(selected_choice)
     return render(request, 'index.html', {'value': result[0], 'selected_choice': selected_choice, 'result': result[1]})
+
 
 def my_choise(request):
     '''Offline option selection page'''
@@ -22,6 +23,7 @@ def my_choise(request):
         form = ChoiceForm()
     return render(request, 'my_choice.html', {'form': form})
 
+
 def main(request):
     '''Main page'''
     chois = Choice.objects.all()
@@ -30,6 +32,7 @@ def main(request):
     else:
         a = chois[1]
     return render(request, 'main.html', {'selected_choice': chois[0], 'enemy_choice': a})
+
 
 def choice_online(request):
     '''Choosing an option in an online game'''
@@ -49,6 +52,7 @@ def choice_online(request):
     else:
         form = ChoiceForm()
     return render(request, 'my_choice.html', {'form': form})
+
 
 def total_online(request):
     '''Display result for 2nd player'''
