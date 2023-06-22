@@ -1,6 +1,3 @@
-import asyncio
-import websockets
-
 from django.shortcuts import render, redirect
 
 from .models import Choice
@@ -63,29 +60,6 @@ def total_online(request):
     enemy_choice = request.GET.get('enemy_choice', None)
     result = game_total(selected_choice, enemy_choice)
     return render(request, 'total_online.html', {'selected_choice': selected_choice, 'enemy_choice': enemy_choice, 'result': result})
-
-
-
-
-# async def handle_websocket(websocket, path):
-#     while True:
-#         # обработка сообщений от клиента
-#         message = await websocket.recv()
-#         await websocket.send("You said: " + message)
-#         await asyncio.sleep(5)  # добавлено ожидание
-#
-# async def online_connected(request):
-#     return render(request, "websocket_connected.html")
-#
-# async def start_websocket(request):
-#     async with websockets.serve(handle_websocket, "0.0.0.0", 8765):
-#         await asyncio.Future()  # сервер будет работать бесконечно
-#
-# def websocket_connected(request):
-#     loop = asyncio.get_event_loop()
-#     loop.create_task(start_websocket(request))
-#     return render(request, "websocket_connected.html")
-
 
 
 
