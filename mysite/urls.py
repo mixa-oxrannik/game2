@@ -4,6 +4,7 @@ from stone_scissors import views
 
 
 urlpatterns = [
+    # path('websocket/', views.websocket_connected, name='websocket_connected'),
     path('total_online', views.total_online),
     path('admin/', admin.site.urls),
     path('offline', views.result_game),
